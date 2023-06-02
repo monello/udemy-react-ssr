@@ -7061,16 +7061,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // create a new express app
 var app = (0, _express2.default)();
 
-// create a root route
+// tells express to serve files from our public folder.
 
 
 // imports to be able to render a React component
+app.use(_express2.default.static('public'));
+
+// create a root route
 app.get('/', function (req, res) {
     // first we need to convert the React component to an HTML string.
     // ... this is where we use "renderToString()" instead of "render()" as we do in normal React apps
     var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
+
+    // create a mini-HTML document and interpolate our content and a script tag to load our client side bundle from the "static" folder we specified above
+    var html = '\n    <html>\n        <head></head>\n        <body>\n            <div>' + content + '</div>\n            <script src="bundle.js"></script>\n        </body>\n    </html>\n    ';
+
     // We still send an HTML string back, but this time it will be the pre-rendered React component
-    res.send(content);
+    res.send(html);
 });
 
 // tell our express app to listen on port 3000
