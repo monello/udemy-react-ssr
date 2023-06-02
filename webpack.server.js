@@ -1,11 +1,11 @@
 const path = require('path');
 
-modules.export = {
+module.exports = {
     // Inform Webpack that we're building a bundle for NodeJS, rather than for the browser
     target: 'node',
 
     // Point Webpack to the root file of our server application
-    entry: './src/indexedDB.js',
+    entry: './src/index.js',
 
     // Tell Webpack where to put the output (generated bundle)
     output: {
@@ -31,8 +31,8 @@ modules.export = {
                         'react',    // This will turn all our JSX into normal JS function calls
                         'stage-0',  // Will handle some async-code we'll get to later in the course
                         // The following sets some generic rules for Babel
-                        // Its says that it should run all applicable rules to make the output bundle compatible with the
-                        //  last to versions of all popular browsers
+                        // It says that it should run all applicable rules to make the output bundle compatible with the
+                        //  last 2 versions of all popular browsers
                         ['env', { targets: { browsers: ['last 3 versions'] } }]
                     ]
                 }
