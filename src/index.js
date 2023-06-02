@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 
 // imports to be able to render a React component
-const React = require('react');
-const renderToString = require('react-dom/server').renderToString;
-const Home = require('./client/components/Home').default;
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import Home from './client/components/Home';
 
 // create a new express app
 const app = express();

@@ -7042,21 +7042,33 @@ if (process.env.NODE_ENV === 'production') {
 "use strict";
 
 
-var express = __webpack_require__(54);
+var _express = __webpack_require__(54);
 
-// imports to be able to render a React component
-var React = __webpack_require__(16);
-var renderToString = __webpack_require__(110).renderToString;
-var Home = __webpack_require__(121).default;
+var _express2 = _interopRequireDefault(_express);
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(110);
+
+var _Home = __webpack_require__(121);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create a new express app
-var app = express();
+var app = (0, _express2.default)();
 
 // create a root route
+
+
+// imports to be able to render a React component
 app.get('/', function (req, res) {
     // first we need to convert the React component to an HTML string.
     // ... this is where we use "renderToString()" instead of "render()" as we do in normal React apps
-    var content = renderToString(React.createElement(Home, null));
+    var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
     // We still send an HTML string back, but this time it will be the pre-rendered React component
     res.send(content);
 });
@@ -22405,7 +22417,7 @@ var Home = function Home() {
     return _react2.default.createElement(
         'div',
         null,
-        'Home - Hello World'
+        'Home - Hello World using'
     );
 };
 
