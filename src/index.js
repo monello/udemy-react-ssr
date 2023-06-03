@@ -1,5 +1,6 @@
 import express from 'express';
 import renderer from './helpers/renderer';
+import createStore from './helpers/createStore';
 
 // create a new express app
 const app = express();
@@ -9,7 +10,12 @@ app.use(express.static('public'));
 
 // create a root route
 app.get('*', (req, res) => {
-    const html = renderer(req);
+    const store = createStore();
+
+    // Some logic to initialize
+    // and load data into the store
+
+    const html = renderer(req, store);
 
     // We still send an HTML string back, but this time it will be the pre-rendered React component
     res.send(html);

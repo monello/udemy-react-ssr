@@ -1,16 +1,19 @@
 import React from "react";
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+
 import Routes from "../client/Routes";
 
-export default (req) => {
+export default (req, store) => {
     // first we need to convert the React component to an HTML string.
     // ... this is where we use "renderToString()" instead of "render()" as we do in normal React apps
     const content = renderToString(
-        // the context prop is required. We are not using it yet but it my=ust be set, so for now it is set to an empty object
-        <StaticRouter location={req.path} context={{}}>
-            <Routes />
-        </StaticRouter>
+        <Provider store={store}>
+            <StaticRouter location={req.path} context={{}}>
+                <Routes />
+            </StaticRouter>
+        </Provider>
     );
 
     // create a mini-HTML document and interpolate our content and a script tag to load our client side bundle from the "static" folder we specified above
