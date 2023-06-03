@@ -7074,7 +7074,7 @@ app.get('/', function (req, res) {
     var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
 
     // create a mini-HTML document and interpolate our content and a script tag to load our client side bundle from the "static" folder we specified above
-    var html = '\n    <html>\n        <head></head>\n        <body>\n            <div>' + content + '</div>\n            <script src="bundle.js"></script>\n        </body>\n    </html>\n    ';
+    var html = '\n    <html>\n        <head></head>\n        <body>\n            <div id="root">' + content + '</div>\n            <script src="bundle.js"></script>\n        </body>\n    </html>\n    ';
 
     // We still send an HTML string back, but this time it will be the pre-rendered React component
     res.send(html);
