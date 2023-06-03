@@ -8,7 +8,14 @@ const app = express();
 app.use(express.static('public'));
 
 // create a root route
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
+    const html = renderer(req);
+
+    // We still send an HTML string back, but this time it will be the pre-rendered React component
+    res.send(html);
+});
+
+app.get('/hi', (req, res) => {
     const html = renderer(req);
 
     // We still send an HTML string back, but this time it will be the pre-rendered React component
