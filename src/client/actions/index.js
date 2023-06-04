@@ -5,10 +5,10 @@ export const FETCH_USERS = 'fetch_users';
 
 // ACTION CREATORS
 export const fetchUsers = () => async dispatch => {
-    const res = await axios.get('https://react-ssr-api.herokuapp.com/users');
+    const res = await axios.get('http://react-ssr-api.herokuapp.com/users');
 
     dispatch({
-        action: FETCH_USERS,
+        type: FETCH_USERS,
         payload: res
     });
 };

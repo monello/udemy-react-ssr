@@ -4,7 +4,7 @@ import { fetchUsers } from '../actions';
 
 class UsersList extends Component {
     componentDidMount() {
-        // thi<s.props.fetchUsers();
+        this.props.fetchUsers();
     }
 
     renderUsers() {
