@@ -12,7 +12,7 @@ import { renderRoutes } from 'react-router-config';
 import Routes from "./Routes";
 
 //                        reducers, initial State, middleware
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+const store = createStore(reducers, window.INITIAL_STATE, applyMiddleware(thunk));
 
 const rootElem = document.querySelector('#root');
 ReactDOM.hydrate(
