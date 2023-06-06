@@ -25,8 +25,10 @@ function mapStateToProps(state) {
     return { users: state.users };
 }
 
-function loadData() {
-    console.log("I'm attempting to load data!");
+function loadData(store) {
+    // Manually dispatch fetchUsers()
+    // > wW say "manually" because we are executing it directly on the "store" object.
+    return store.dispatch(fetchUsers());
 }
 
 export { loadData };

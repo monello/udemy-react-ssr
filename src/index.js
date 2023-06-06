@@ -16,10 +16,11 @@ app.get('*', (req, res) => {
     const store = createStore();
 
     // Use matchRoutes to figure out which components are required for the current route
-    matchRoutes(Routes, req.path).map(({ route }) => {
-        return route.loadData ? route.loadData() : null;
+    const promises = matchRoutes(Routes, req.path).map(({ route }) => {
+        return route.loadData ? route.loadData(store) : null;
     });
 
+    console.log(promises);
 
     const html = renderer(req, store);
 
