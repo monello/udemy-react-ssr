@@ -20,12 +20,17 @@ app.get('*', (req, res) => {
         return route.loadData ? route.loadData(store) : null;
     });
 
-    console.log(promises);
+    // Wait for all the promises in the list to resolve
+    Promise.all(promises).then(() => {
+        // Now we know we have all the data we will need
 
-    const html = renderer(req, store);
+        // Finally we can send the HTML to the client side (browser)
+        const html = renderer(req, store);
 
-    // We still send an HTML string back, but this time it will be the pre-rendered React component
-    res.send(html);
+        // We still send an HTML string back, but this time it will be the pre-rendered React component
+        res.send(html);
+    });
+
 });
 
 // tell our express app to listen on port 3000
