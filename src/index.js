@@ -18,6 +18,7 @@ app.get('*', (req, res) => {
     // Use matchRoutes to figure out which components are required for the current route
     console.log(matchRoutes(Routes, req.path));
 
+
     const html = renderer(req, store);
 
     // We still send an HTML string back, but this time it will be the pre-rendered React component
