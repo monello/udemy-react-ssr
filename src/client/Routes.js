@@ -5,13 +5,12 @@ import UsersListPage, { loadData } from "./pages/UsersListPage";
 // This is how you handle Routing when using the `react-router-config` package
 export default [
     {
+        ...HomePage,
         path: '/',
         exact: true,
-        component: HomePage
     },
     {
+        ...UsersListPage,
         path: '/users',
-        component: UsersListPage,
-        loadData
     }
 ];
