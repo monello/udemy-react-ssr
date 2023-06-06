@@ -16,7 +16,9 @@ app.get('*', (req, res) => {
     const store = createStore();
 
     // Use matchRoutes to figure out which components are required for the current route
-    console.log(matchRoutes(Routes, req.path));
+    matchRoutes(Routes, req.path).map(({ route }) => {
+        return route.loadData ? route.loadData() : null;
+    });
 
 
     const html = renderer(req, store);
