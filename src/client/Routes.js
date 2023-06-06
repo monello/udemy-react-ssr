@@ -1,6 +1,6 @@
 import React from "react";
-import Home from "./components/Home";
-import UsersList, { loadData } from "./components/UsersList";
+import Home from "./pages/HomePage";
+import UsersList, { loadData } from "./pages/UsersListPage";
 
 // This is how you handle Routing when using the `react-router-config` package
 export default [
