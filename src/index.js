@@ -1,12 +1,23 @@
 import 'babel-polyfill';
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
+import proxy from 'express-http-proxy';
 import Routes from './client/Routes';
 import renderer from './helpers/renderer';
 import createStore from './helpers/createStore';
 
 // create a new express app
 const app = express();
+
+// The 2nd parame here (the object) is only applicable to this course due to the way the lecturer set up
+//  the auth server, just to make things simpler to explain in the course.
+// We won't need to do this out in the wild
+app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator(opts) {
+        opts.header['x-forwarded-host'] = 'localhost:3000';
+        return opts;
+    }
+}));
 
 // tells express to serve files from our public folder.
 app.use(express.static('public'));
