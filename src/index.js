@@ -9,12 +9,12 @@ import createStore from './helpers/createStore';
 // create a new express app
 const app = express();
 
-// The 2nd parame here (the object) is only applicable to this course due to the way the lecturer set up
+// The 2nd param here (the object) is only applicable to this course due to the way the lecturer set up
 //  the auth server, just to make things simpler to explain in the course.
 // We won't need to do this out in the wild
 app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
     proxyReqOptDecorator(opts) {
-        opts.header['x-forwarded-host'] = 'localhost:3000';
+        opts.headers['x-forwarded-host'] = 'localhost:3000';
         return opts;
     }
 }));
@@ -24,7 +24,8 @@ app.use(express.static('public'));
 
 // create a root route
 app.get('*', (req, res) => {
-    const store = createStore();
+    // here we pass in the request object to our store because amongts many other things it contains the cookie
+    const store = createStore(req);
 
     // Use matchRoutes to figure out which components are required for the current route
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
