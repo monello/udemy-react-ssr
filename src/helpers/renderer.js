@@ -21,7 +21,9 @@ export default (req, store) => {
     // create a mini-HTML document and interpolate our content and a script tag to load our client side bundle from the "static" folder we specified above
     return `
     <html>
-        <head></head>
+        <head>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        </head>
         <body>
             <div id="root">${content}</div>
             <script>
