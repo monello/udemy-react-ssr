@@ -36,8 +36,16 @@ app.get('*', (req, res) => {
     Promise.all(promises).then(() => {
         // Now we know we have all the data we will need
 
+        // create the context for the StaticRouter
+        const context = {};
+
         // Finally we can send the HTML to the client side (browser)
-        const html = renderer(req, store);
+        const html = renderer(req, store, context);
+
+        // Check for the "notFound" property in the context
+        if (context.notFound) {
+            res.status(404);
+        }
 
         // We still send an HTML string back, but this time it will be the pre-rendered React component
         res.send(html);

@@ -7,12 +7,12 @@ import serialize from 'serialize-javascript';
 
 import Routes from "../client/Routes";
 
-export default (req, store) => {
+export default (req, store, context) => {
     // first we need to convert the React component to an HTML string.
     // ... this is where we use "renderToString()" instead of "render()" as we do in normal React apps
     const content = renderToString(
         <Provider store={store}>
-            <StaticRouter location={req.path} context={{}}>
+            <StaticRouter location={req.path} context={context}>
                 <div>{renderRoutes(Routes)}</div>
             </StaticRouter>
         </Provider>
