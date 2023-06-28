@@ -30,6 +30,12 @@ app.get('*', (req, res) => {
     // Use matchRoutes to figure out which components are required for the current route
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.loadData ? route.loadData(store) : null;
+    }).map(promise => {
+        if (promise) {
+            return new Promise((resolve, reject) => {
+                promise.then(resolve).catch(resolve);
+            });
+        }
     });
 
     // Wait for all the promises in the list to resolve
