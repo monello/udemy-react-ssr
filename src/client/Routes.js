@@ -1,7 +1,8 @@
 import React from "react";
 import App from "./App";
 import HomePage from "./pages/HomePage";
-import UsersListPage, { loadData } from "./pages/UsersListPage";
+import UsersListPage from "./pages/UsersListPage";
+import AdminsListPage from "./pages/AdminsListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 // This is how you handle Routing when using the `react-router-config` package
@@ -14,6 +15,10 @@ export default [
                 ...HomePage,
                 path: '/',
                 exact: true,
+            },
+            {
+                ...AdminsListPage,
+                path: '/admins'
             },
             {
                 ...UsersListPage,
